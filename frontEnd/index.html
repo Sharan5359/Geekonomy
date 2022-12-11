@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Geekonomy Technology</title>
+
+    </head>
+    <body>
+        <center><form id = "f1form" method="post">
+            <input type="text"  id = "name" placeholder = "name"/> <br>
+            <input type="tel" id="phone" placeholder="phone" /><br>
+            <input type ="text" id="address" placeholder="address"/><br>
+            <input type="email" id="email" placeholder="email"/><br>
+        
+            <input type="submit" id="submit" name="submit"/>
+            <div id="result"> </div>
+        </form></center>
+        <center>
+            
+        </center>
+
+        <script>
+
+  
+                var form = document.getElementById('f1form')
+                form.addEventListener('submit', function(e){
+
+                    e.preventDefault()
+                    var name = document.getElementById('name').value
+                var phone = document.getElementById('phone').value
+                var address = document.getElementById('address').value
+                var email =  document.getElementById('email').value
+
+            fetch("http://localhost:8052/signup", {
+            method: 'POST',
+            body: JSON.stringify({
+                name: name,
+                mobile: phone,
+                address:address,
+                email :email
+                
+            }),
+            headers: {
+                "Content-Type": "application/json;charset=UTF-8"
+            }
+        })
+        .then((response) => {
+                return response.json()
+        })
+        .then((data) => {
+            console.log(data)
+        })
+                
+                });
+        </script>
+    </body>
+</html>
